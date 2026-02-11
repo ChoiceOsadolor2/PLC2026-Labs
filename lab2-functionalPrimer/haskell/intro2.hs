@@ -4,11 +4,14 @@ module Intro2 where
 name = "Alice"
 -- "if" has a special syntax but otherwise a typed version of Lisp's "if":
 name2 = if name /= "" then name else "no name"
+myname = "Choice"
+example1=print myname
 
+-- PNAME3 is defined as an IO action, where it prints the string bob
 pname3 = print "Bob"
 
-myprogram = print (1 + m)  -- compiler error: m undefined
 m = 1                      -- unless this line is also present
+myprogram = print (1 + m)  -- compiler error: m undefined
 
 -- sequencing several imperative programs:
 prg1 = do
@@ -40,3 +43,14 @@ greet1 = "hello " ++ name ++ (toString 123)
 greet2 = (++) "hello " name
 -- concatenating more than 2 strings:
 greet3 = concat ["hello ", name, toString 123]
+
+greet4=concat ["hiii i'm ", myname]
+greet5=concat["hiii"++"this is "++myname]
+
+main2 = do
+  putStrLn greet1
+  putStrLn greet2
+  putStrLn greet3
+  putStrLn greet4
+  putStrLn greet5
+
