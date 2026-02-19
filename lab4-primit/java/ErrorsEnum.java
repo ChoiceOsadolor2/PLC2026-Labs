@@ -54,16 +54,46 @@ public class ErrorsEnum
         return result;
     }
 
+    private static Error results2Error(Result r)
+    {
+        Error result = null;
+        
+        switch (r) {
+        case A_BIT_DIFFERENT:
+            result = Error.FP_ROUNDING;
+            break;
+        case INFINITY:
+            result = Error.FP_OVERFLOW;
+            break;
+        case ZERO:
+            result = Error.FP_UNDERFLOW;
+            break;
+        case VERY_DIFFERENT:
+            result = Error.INT_OVERFLOW;
+            break;
+        }
+        
+        return result;
+    }
+
+    
+
     public static void main(String[] args)
     {
-        System.out.print("Known errors = ");
-        for (Error e : EnumSet.allOf(Error.class)) 
+        System.out.print("Known results = ");
+        // for (Error e : EnumSet.allOf(Error.class)) 
+        // {
+        //     System.out.print(e + " ");
+        // }
+        for (Result r : EnumSet.allOf(Result.class)) 
         {
-            System.out.print(e + " ");
+            System.out.print(r + " ");
         }
         System.out.println();
         
-        Error e = getEnumElement("error", Error.class);
-        System.out.println(e + " results in: " + error2Result(e));
+        // Error e = getEnumElement("error", Error.class);
+        Result r= getEnumElement("result", Result.class);
+        // System.out.println(e + " results in: " + error2Result(e));
+        System.out.println(r + " results from: " + results2Error(r));
     }
 }
